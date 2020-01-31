@@ -38,7 +38,6 @@ const TimerSetDiv = styled.div`
     align-items:flex-end;
     display: flex;
     flex:1;
-    color:white;
     font-size:20px;
   }
 
@@ -46,7 +45,6 @@ const TimerSetDiv = styled.div`
    max-height:100px;
    font-size:30px;
    margin-top:30px;
-   color:white;
    flex:1;
    align-items:flex-start;
   }
@@ -63,7 +61,10 @@ const TimerSet = (props) => {
   const [running, setRunning] = useState(0);
 
   let query = useQuery();
-  let timesetquery = query.get('set'); //`1,ready?,5 2,work/rest,5/3 2,work/rest,6/4`;
+  let timesetquery = query.get('set'); 
+  if (!timesetquery) {
+    timesetquery = `1,Get ready,5|9,Work/Rest,30/10`;
+  }
 
 
   const parseTimeset = (timesetstr)=> {

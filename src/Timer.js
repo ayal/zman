@@ -8,10 +8,8 @@ const TimerDiv = styled.div`
    align-items: flex-end;
    justify-content:center;
    flex:1;
-   color:white;
    font-size:10em;
    letter-spacing:1px;
-
    max-height:200px;
 `;
 
