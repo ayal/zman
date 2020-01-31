@@ -1,0 +1,19 @@
+import React,{useEffect, useState} from 'react';
+
+const TimerSet = (props) => {
+  const [start,setStart] = useState(null);
+  const [time,setTime] = useState(props.time);
+
+  useEffect(()=>{
+
+  },[start]);
+  
+  return (
+    <div>
+      <button onClick={()=>setStart(new Date())}>start</button>
+      {props.children}
+    </div>
+  );
+}
+
+export default TimerSet;
