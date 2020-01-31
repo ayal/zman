@@ -1,10 +1,17 @@
 import React,{useEffect, useState} from 'react';
 import Timer from './Timer.js';
 import styled from 'styled-components';
+import Beep from './beep.js';
 
+import Fab from '@material-ui/core/Fab';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
 import {
   useLocation
 } from "react-router-dom";
+
+const shortbeep = Beep({duration:0.8, interval:200});
+
 
 
 const TimerSetDiv = styled.div`
@@ -23,15 +30,7 @@ const TimerSetDiv = styled.div`
     flex:1;
   }
   button {
-   cursor:pointer;
-   border:none;
-   background:blue;
-   width:50px;
-   height:50px;
-   color:white;
    text-transform:uppercase;
-   padding:10px;
-   border-radius:100px;
    flex:1;
   }
 
@@ -47,7 +46,6 @@ const TimerSetDiv = styled.div`
    max-height:100px;
    font-size:30px;
    margin-top:30px;
-   text-transform:uppercase;
    color:white;
    flex:1;
    align-items:flex-start;
@@ -70,7 +68,7 @@ const TimerSet = (props) => {
 
   const parseTimeset = (timesetstr)=> {
     const timeset = [];
-    const sections = timesetstr.split(' ');
+    const sections = timesetstr.split('|');
     for (let section of sections) {
       let [repeat,labels,times] = section.split(',');
       times = times.split('/').map(x=>parseInt(x));
@@ -105,7 +103,7 @@ const TimerSet = (props) => {
   const {time,label} = timeset[running];
   console.log('label', label, time, running, timeset);
 
-  const buttonlabel = start ? 'pause' : 'run';
+  const buttonicon = start ? <PauseIcon /> : <PlayArrowIcon />;
   
   return (
     <TimerSetDiv>
@@ -114,13 +112,26 @@ const TimerSet = (props) => {
 	     onEnd={()=> {
 	       console.warn('on end on timerset!');
 	       setStart(null); // because we set 2 states here, prevent 2 starts
-	       setRunning(running=>running+1);
-	       setStart(new Date());
+	       if (timeset[running+1]) {
+		 setRunning(running=>running+1);
+		 setStart(new Date());
+	       }
+	       else {
+		 shortbeep(2);
+	       }
 	}}
 	start={start} />
 	<label>{label}</label>
 	<buttondiv>
-	  <button onClick={()=>start ? setStart(null) : setStart(new Date())}>{buttonlabel}</button>
+	  <Fab color="primary" aria-label="run"
+	       onClick={()=> {
+		 if (window.audiocontext.state === 'suspended') {
+		   window.audiocontext.resume();
+		 }
+		 start ? setStart(null) : setStart(new Date())
+	    }}>
+	    {buttonicon}
+	  </Fab>
 	</buttondiv>
     </TimerSetDiv>
   );
