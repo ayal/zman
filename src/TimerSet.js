@@ -2,6 +2,11 @@ import React,{useEffect, useState} from 'react';
 import Timer from './Timer.js';
 import styled from 'styled-components';
 
+import {
+  useLocation
+} from "react-router-dom";
+
+
 const TimerSetDiv = styled.div`
   flex:1;
   display:flex;
@@ -39,19 +44,29 @@ const TimerSetDiv = styled.div`
   }
 
   label {
+   max-height:100px;
    font-size:30px;
    margin-top:30px;
    text-transform:uppercase;
    color:white;
    flex:1;
+   align-items:flex-start;
   }
 `;
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 
 const TimerSet = (props) => {
   const [start,setStart] = useState(null);
   const [timeset,setTimeset] = useState(null);
   const [running, setRunning] = useState(0);
+
+  let query = useQuery();
+  let timesetquery = query.get('set'); //`1,ready?,5 2,work/rest,5/3 2,work/rest,6/4`;
+
 
   const parseTimeset = (timesetstr)=> {
     const timeset = [];
@@ -71,13 +86,17 @@ const TimerSet = (props) => {
   };
 
   useEffect(()=>{
-    const timeset = parseTimeset(props.timeset);
+    const timeset = parseTimeset(timesetquery);
     setTimeset(timeset);
   },[]);
   
   useEffect(()=>{
     console.warn('start changed! start from timerset', start);
   },[start]);
+
+  if (!timesetquery) {
+    return null;
+  }
 
   if (!timeset || !timeset[running]) {
     return null;

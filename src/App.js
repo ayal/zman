@@ -3,11 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 import TimerSet from './TimerSet.js';
 
-function App() {
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
+
+
+function App() {  
   return (
-    <div className="App">
-      <TimerSet timeset={'1,ready?,5 2,work/rest,5/3 2,work/rest,6/4'} />
-    </div>
+    <Router>
+      <div className="App">
+	<TimerSet />
+      </div>
+    </Router>
   );
 }
 
