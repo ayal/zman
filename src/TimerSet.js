@@ -28,6 +28,7 @@ const TimerSetDiv = styled.div`
   buttondiv {
     display:flex;
     flex:1;
+    max-height:50px;
   }
   button {
    text-transform:uppercase;
@@ -39,12 +40,12 @@ const TimerSetDiv = styled.div`
     display: flex;
     flex:1;
     font-size:20px;
+    max-height:30px;
   }
 
   label {
-   max-height:100px;
+   max-height:80px;
    font-size:30px;
-   margin-top:30px;
    flex:1;
    align-items:flex-start;
   }
