@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Beep from './beep.js';
 
 import Fab from '@material-ui/core/Fab';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import {
@@ -26,6 +28,7 @@ const TimerSetDiv = styled.div`
   padding:20px;
 
   buttondiv {
+    position:relative;
     display:flex;
     flex:1;
     max-height:50px;
@@ -38,10 +41,16 @@ const TimerSetDiv = styled.div`
   counter {
     align-items:flex-end;
     display: flex;
+    flex-direction:column;
     flex:1;
     font-size:20px;
     max-height:30px;
   }
+
+  .progress {
+    padding-top:15px;
+    width:50px;
+  } 
 
   label {
    max-height:50px;
@@ -110,7 +119,11 @@ const TimerSet = (props) => {
   if (!timeset || !timeset[running]) {
     return null;
   }
-
+  
+  const progress = timeset.slice(0,running+1).reduce((a,b)=>(a + b.time), 0) / timeset.reduce((a,b)=>(a + b.time), 0) * 100;
+  
+  console.log('progress', progress);
+  
   const {time,label} = timeset[running];
   const {time:nexttime,label:nextlabel} = timeset[running+1] || {};
   
@@ -120,7 +133,11 @@ const TimerSet = (props) => {
   
   return (
     <TimerSetDiv>
-      <counter>{`${running+1} / ${timeset.length}`}</counter>
+      <counter>
+	<div>{`${running+1} / ${timeset.length}`}</div>
+	<div className="progress"><LinearProgress variant="determinate" value={progress} color="secondary" /></div>
+      </counter>
+      
       <Timer key={running} {...{time, label, running}}
 	     onEnd={()=> {
 	       console.warn('on end on timerset!');

@@ -5,9 +5,12 @@ var RAMP_DURATION = 1
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext
 window.audiocontext = window.audiocontext || new window.AudioContext()
+let audiocontext = window.audiocontext;
+var fgain = audiocontext.createGain()
+fgain.connect(audiocontext.destination)
 
 export default function (options) {
-  let audiocontext = window.audiocontext;
+
   if (!options) options = {}
   console.warn('AUDIO', audiocontext.state);
   var frequency = options.frequency || FREQUENCY
@@ -18,16 +21,17 @@ export default function (options) {
     console.warn('AUDIO play', audiocontext.state);
     var currentTime = audiocontext.currentTime
     var osc = audiocontext.createOscillator()
+
     var gain = audiocontext.createGain()
+    gain.connect(fgain);
 
     osc.connect(gain)
-    gain.connect(audiocontext.destination)
 
     gain.gain.setValueAtTime(gain.gain.value, currentTime)
     gain.gain.exponentialRampToValueAtTime(RAMP_VALUE, currentTime + duration)
 
     osc.onended = function () {
-      gain.disconnect(audiocontext.destination)
+      gain.disconnect(fgain)
       osc.disconnect(gain)
     }
 
