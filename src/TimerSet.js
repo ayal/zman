@@ -44,11 +44,20 @@ const TimerSetDiv = styled.div`
   }
 
   label {
-   max-height:80px;
+   max-height:50px;
    font-size:30px;
    flex:1;
    align-items:flex-start;
   }
+
+  sublabel {
+   max-height:40px;
+   font-size:16px;
+   color:grey;
+   flex:1;
+   align-items:flex-start;
+  }
+
 `;
 
 function useQuery() {
@@ -103,6 +112,8 @@ const TimerSet = (props) => {
   }
 
   const {time,label} = timeset[running];
+  const {time:nexttime,label:nextlabel} = timeset[running+1] || {};
+  
   console.log('label', label, time, running, timeset);
 
   const buttonicon = start ? <PauseIcon /> : <PlayArrowIcon />;
@@ -124,6 +135,7 @@ const TimerSet = (props) => {
 	}}
 	start={start} />
 	<label>{label}</label>
+	<sublabel>{`Next: ${nextlabel} / ${nexttime}`}</sublabel>
 	<buttondiv>
 	  <Fab color="primary" aria-label="run"
 	       onClick={()=> {
