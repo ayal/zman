@@ -39,12 +39,12 @@ const TimerSetDiv = styled.div`
   }
 
   counter {
-    align-items:flex-end;
     display: flex;
     flex-direction:column;
     flex:1;
     font-size:20px;
-    max-height:30px;
+    max-height: 50px;
+    align-items: center;
   }
 
   .progress {
@@ -60,6 +60,7 @@ const TimerSetDiv = styled.div`
   }
 
   sublabel {
+   cursor:pointer;
    max-height:40px;
    font-size:16px;
    color:grey;
@@ -125,7 +126,9 @@ const TimerSet = (props) => {
   console.log('progress', progress);
   
   const {time,label} = timeset[running];
-  const {time:nexttime,label:nextlabel} = timeset[running+1] || {};
+  let {time:nexttime,label:nextlabel} = timeset[running+1] || {};
+  nexttime = nexttime || "done";
+  nextlabel = nextlabel || "done";
   
   console.log('label', label, time, running, timeset);
 
@@ -152,7 +155,12 @@ const TimerSet = (props) => {
 	}}
 	start={start} />
 	<label>{label}</label>
-	<sublabel>{`Next: ${nextlabel} / ${nexttime}`}</sublabel>
+	<sublabel onClick={()=>{
+	    setStart(null); // because we set 2 states here, prevent 2 starts
+	    if (timeset[running+1]) {
+	      setRunning(running=>running+1);
+	    }
+	  }}>{`Next: ${nextlabel} / ${nexttime}`}</sublabel>
 	<buttondiv>
 	  <Fab color="primary" aria-label="run"
 	       onClick={()=> {

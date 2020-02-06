@@ -10,7 +10,8 @@ const TimerDiv = styled.div`
    flex:1;
    font-size:10em;
    letter-spacing:1px;
-   max-height:200px;
+    max-height: 180px;
+    align-items: center;
 `;
 
 const shortbeep = Beep({duration:0.8});
