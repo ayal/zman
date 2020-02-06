@@ -12,9 +12,7 @@ import {
   useLocation
 } from "react-router-dom";
 
-const shortbeep = Beep({duration:0.8, interval:200});
-
-
+const shortbeep = Beep({duration:0.2, interval:150});
 
 const TimerSetDiv = styled.div`
   flex:1;
@@ -43,16 +41,21 @@ const TimerSetDiv = styled.div`
     flex-direction:column;
     flex:1;
     font-size:20px;
-    max-height: 50px;
+    max-height: 40px;
     align-items: center;
   }
 
   .progress {
     padding-top:15px;
-    width:50px;
+    width:100px;
+    .MuiLinearProgress-root {
+     height:8px;
+    }
+ 
   } 
 
   label {
+   text-transform:capitalize;
    max-height:50px;
    font-size:30px;
    flex:1;
@@ -60,12 +63,13 @@ const TimerSetDiv = styled.div`
   }
 
   sublabel {
+   display:flex;
    cursor:pointer;
    max-height:40px;
    font-size:16px;
    color:grey;
    flex:1;
-   align-items:flex-start;
+   align-items:center;
   }
 
 `;
@@ -126,9 +130,7 @@ const TimerSet = (props) => {
   console.log('progress', progress);
   
   const {time,label} = timeset[running];
-  let {time:nexttime,label:nextlabel} = timeset[running+1] || {};
-  nexttime = nexttime || "done";
-  nextlabel = nextlabel || "done";
+  const {time:nexttime,label:nextlabel} = timeset[running+1] || {};
   
   console.log('label', label, time, running, timeset);
 
@@ -136,11 +138,7 @@ const TimerSet = (props) => {
   
   return (
     <TimerSetDiv>
-      <counter>
-	<div>{`${running+1} / ${timeset.length}`}</div>
-	<div className="progress"><LinearProgress variant="determinate" value={progress} color="secondary" /></div>
-      </counter>
-      
+      <label>{label}</label>
       <Timer key={running} {...{time, label, running}}
 	     onEnd={()=> {
 	       console.warn('on end on timerset!');
@@ -150,17 +148,19 @@ const TimerSet = (props) => {
 		 setStart(new Date());
 	       }
 	       else {
-		 shortbeep(2);
+		 shortbeep(3);
 	       }
 	}}
 	start={start} />
-	<label>{label}</label>
 	<sublabel onClick={()=>{
 	    setStart(null); // because we set 2 states here, prevent 2 starts
 	    if (timeset[running+1]) {
 	      setRunning(running=>running+1);
 	    }
-	  }}>{`Next: ${nextlabel} / ${nexttime}`}</sublabel>
+	  }}>{nextlabel ? `Next: ${nextlabel} / ${nexttime}` : ``}</sublabel>
+	<counter>
+	  <div className="progress"><LinearProgress variant="determinate" value={progress} color="secondary" /></div>
+	</counter>
 	<buttondiv>
 	  <Fab color="primary" aria-label="run"
 	       onClick={()=> {

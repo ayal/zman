@@ -21,24 +21,21 @@ export default function (options) {
     console.warn('AUDIO play', audiocontext.state);
     var currentTime = audiocontext.currentTime
     var osc = audiocontext.createOscillator()
-
     var gain = audiocontext.createGain()
+    osc.connect(gain)
     gain.connect(fgain);
 
-    osc.connect(gain)
+    gain.gain.setValueAtTime(gain.gain.value, audiocontext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audiocontext.currentTime + duration);
 
-    gain.gain.setValueAtTime(gain.gain.value, currentTime)
-    gain.gain.exponentialRampToValueAtTime(RAMP_VALUE, currentTime + duration)
+    osc.start(0);
+    osc.stop(currentTime + duration);
 
+    
     osc.onended = function () {
-      gain.disconnect(fgain)
-      osc.disconnect(gain)
+      gain.disconnect(fgain);
+      osc.disconnect(gain);
     }
-
-    osc.type = 'sine'
-    osc.frequency.value = frequency
-    osc.start(currentTime)
-    osc.stop(currentTime + duration)
   }
 
   var beep = function (times) {

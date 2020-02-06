@@ -14,8 +14,7 @@ const TimerDiv = styled.div`
     align-items: center;
 `;
 
-const shortbeep = Beep({duration:0.8});
-const longbeep = Beep({duration:1});
+const shortbeep = Beep({duration:0.2});
 
 const Timer = (props) => {
   const [time,setTime] = useState(props.time);
@@ -36,7 +35,7 @@ const Timer = (props) => {
 	    shortbeep(1);
 	  }
 	  if (newTime <= 1) {
-	    longbeep(1);
+	    shortbeep(2);
 	  }
 	}
 	setTime(newTime);
