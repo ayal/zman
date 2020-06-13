@@ -49,7 +49,7 @@ const Timer = (props) => {
     return ()=>{
       cancelAnimationFrame(handle);
     };
-  },[time]);
+  },[time, animate]);
 
   useEffect(()=> {
     if (props.start) {
@@ -63,7 +63,7 @@ const Timer = (props) => {
       console.log('setting original time');
       setOriginalTime(time);
     }
-  }, [props.start]);
+  }, [props.start, animate, props, time]);
 
   useEffect(()=> {
     console.log('props.time changed, setting', props.time);
