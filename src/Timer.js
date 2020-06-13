@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState, useCallback} from 'react';
 import Beep from './beep.js';
 
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ const Timer = (props) => {
   const [time,setTime] = useState(props.time);
   const [originalTime,setOriginalTime] = useState(props.time);
 
-  const animate = ()=>{
+  const animate = useCallback(()=>{
     if (props.start) {
       let newTime = originalTime - ((new Date() - props.start)/1000);
       if (newTime <= 0.2) {
@@ -41,7 +41,7 @@ const Timer = (props) => {
 	setTime(newTime);
       }
     }
-  };
+  });
 
   useEffect(()=>{
     
