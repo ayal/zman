@@ -164,7 +164,7 @@ const TimerSet = (props) => {
 	  <div className="progress"><LinearProgress variant="determinate" value={progress} color="secondary" /></div>
 	</counter>
 	<buttondiv>
-	  <Fab color="primary" aria-label="run"
+	  <Fab color="secondary" aria-label="run"
 	       onClick={()=> {
 		 if (window.audiocontext.state === 'suspended') {
 		   window.audiocontext.resume();
