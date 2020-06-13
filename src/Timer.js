@@ -54,20 +54,20 @@ const Timer = (props) => {
 
   useEffect(()=> {
     if (start) {
-      console.warn('Timer starts! use effect timer start', start, time);
+      //console.warn('Timer starts! use effect timer start', start, time);
       const handle = requestAnimationFrame(animate);
       return ()=>{
 	cancelAnimationFrame(handle);
       };
     }
     else {
-      console.log('setting original time');
+      //console.log('setting original time');
       setOriginalTime(time);
     }
   }, [start, animate, time]);
 
   useEffect(()=> {
-    console.log('props.time changed, setting', propstime);
+    //console.log('props.time changed, setting', propstime);
     setOriginalTime(propstime);
   },[propstime]);
 
