@@ -17,9 +17,9 @@ const TimerDiv = styled.div`
 const shortbeep = Beep({duration:0.2});
 
 const Timer = (props) => {
-  const {time, start, onEnd} = props;
-  const [time,setTime] = useState(time);
-  const [originalTime,setOriginalTime] = useState(time);
+  const {time:propstime, start, onEnd} = props;
+  const [time,setTime] = useState(propstime);
+  const [originalTime,setOriginalTime] = useState(propstime);
 
   const animate = useCallback(()=>{
     if (start) {
@@ -67,9 +67,9 @@ const Timer = (props) => {
   }, [start, animate, time]);
 
   useEffect(()=> {
-    console.log('props.time changed, setting', time);
-    setOriginalTime(time);
-  },[time]);
+    console.log('props.time changed, setting', propstime);
+    setOriginalTime(propstime);
+  },[propstime]);
 
 
   return (
