@@ -166,13 +166,11 @@ const TimerSet = (props) => {
 	<buttondiv>
 	  <Fab color="secondary" aria-label="run"
 	       onClick={()=> {
+                   noSleep.enable();
 		 if (window.audiocontext.state === 'suspended') {
 		   window.audiocontext.resume();
 		 }
 		 start ? setStart(null) : setStart(new Date())
-                 alert('start no sleep');
-                 noSleep.enable();
-            	 document.body.appendChild(noSleep.noSleepVideo)
 	    }}>
 	    {buttonicon}
 	  </Fab>
