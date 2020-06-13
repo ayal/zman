@@ -1,4 +1,3 @@
-var FREQUENCY = 440
 var INTERVAL = 250
 var RAMP_DURATION = 1
 
