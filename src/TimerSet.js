@@ -172,6 +172,7 @@ const TimerSet = (props) => {
 		 start ? setStart(null) : setStart(new Date())
                  alert('start no sleep');
                  noSleep.enable();
+            	 document.body.appendChild(noSleep.noSleepVideo)
 	    }}>
 	    {buttonicon}
 	  </Fab>
