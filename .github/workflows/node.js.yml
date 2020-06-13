@@ -26,4 +26,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build --if-present
-    - run: mkdir docs && cp -r build/* docs
+    - run: npm run deploy
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
