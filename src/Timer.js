@@ -41,7 +41,7 @@ const Timer = (props) => {
 	setTime(newTime);
       }
     }
-  });
+  }, [props.start, time]);
 
   useEffect(()=>{
     
