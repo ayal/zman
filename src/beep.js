@@ -1,6 +1,5 @@
 var FREQUENCY = 440
 var INTERVAL = 250
-var RAMP_VALUE = 0.0001
 var RAMP_DURATION = 1
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext
@@ -13,7 +12,6 @@ export default function (options) {
 
   if (!options) options = {}
   console.warn('AUDIO', audiocontext.state);
-  var frequency = options.frequency || FREQUENCY
   var interval = options.interval || INTERVAL
   var duration = options.duration || RAMP_DURATION;
 
