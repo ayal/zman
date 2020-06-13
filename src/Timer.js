@@ -17,17 +17,18 @@ const TimerDiv = styled.div`
 const shortbeep = Beep({duration:0.2});
 
 const Timer = (props) => {
-  const [time,setTime] = useState(props.time);
-  const [originalTime,setOriginalTime] = useState(props.time);
+  const {time, start, onEnd} = props;
+  const [time,setTime] = useState(time);
+  const [originalTime,setOriginalTime] = useState(time);
 
   const animate = useCallback(()=>{
-    if (props.start) {
-      let newTime = originalTime - ((new Date() - props.start)/1000);
+    if (start) {
+      let newTime = originalTime - ((new Date() - start)/1000);
       if (newTime <= 0.2) {
 	newTime = 0;
 	setTime(0);
 	console.warn('ending!');
-	props.onEnd();
+	onEnd();
       }
       else {
 	if (Math.ceil(time) > Math.ceil(newTime)) {
@@ -41,7 +42,7 @@ const Timer = (props) => {
 	setTime(newTime);
       }
     }
-  }, [props.start, time]);
+  }, [start, onEnd, time, originalTime]);
 
   useEffect(()=>{
     
@@ -52,8 +53,8 @@ const Timer = (props) => {
   },[time, animate]);
 
   useEffect(()=> {
-    if (props.start) {
-      console.warn('Timer starts! use effect timer start', props, time);
+    if (start) {
+      console.warn('Timer starts! use effect timer start', start, time);
       const handle = requestAnimationFrame(animate);
       return ()=>{
 	cancelAnimationFrame(handle);
@@ -63,12 +64,12 @@ const Timer = (props) => {
       console.log('setting original time');
       setOriginalTime(time);
     }
-  }, [props.start, animate, props, time]);
+  }, [start, animate, time]);
 
   useEffect(()=> {
-    console.log('props.time changed, setting', props.time);
-    setOriginalTime(props.time);
-  },[props.time]);
+    console.log('props.time changed, setting', time);
+    setOriginalTime(time);
+  },[time]);
 
 
   return (
