@@ -111,7 +111,7 @@ const TimerSet = (props) => {
   useEffect(()=>{
     const timeset = parseTimeset(timesetquery);
     setTimeset(timeset);
-  },[]);
+  },[timesetquery]);
   
   useEffect(()=>{
     console.warn('start changed! start from timerset', start);
