@@ -170,6 +170,7 @@ const TimerSet = (props) => {
 		   window.audiocontext.resume();
 		 }
 		 start ? setStart(null) : setStart(new Date())
+                 alert('start no sleep');
                  noSleep.enable();
 	    }}>
 	    {buttonicon}
