@@ -11,7 +11,7 @@ import PauseIcon from '@material-ui/icons/Pause';
 import {
   useLocation
 } from "react-router-dom";
-import * as NoSleep from 'nosleep.js';
+import NoSleep from 'nosleep.js';
 var noSleep = new NoSleep();
 
 const shortbeep = Beep({duration:0.2, interval:150});
