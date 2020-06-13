@@ -11,6 +11,8 @@ import PauseIcon from '@material-ui/icons/Pause';
 import {
   useLocation
 } from "react-router-dom";
+import * as NoSleep from 'nosleep.js';
+var noSleep = new NoSleep();
 
 const shortbeep = Beep({duration:0.2, interval:150});
 
@@ -168,6 +170,7 @@ const TimerSet = (props) => {
 		   window.audiocontext.resume();
 		 }
 		 start ? setStart(null) : setStart(new Date())
+                 noSleep.enable();
 	    }}>
 	    {buttonicon}
 	  </Fab>
