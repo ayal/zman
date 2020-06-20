@@ -4,7 +4,7 @@ import './index.css';
 
 
 import NoSleep from './NoSleep';
-window.noSleep = null;
+window.noSleep;
 document.addEventListener('click',  () => {
   if (window.nosleep) window.nosleep.disable(); // Just to be sure if you forgot to disable.
   window.nosleep = new NoSleep();
