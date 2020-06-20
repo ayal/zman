@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9395b1fd88c0a23ad1d0336a92ec68c2",
+    "revision": "663cf3b0293f63b1dffc93953c5ca598",
     "url": "/zman/index.html"
   },
   {
-    "revision": "8de36047ee9ac1956b69",
+    "revision": "6a95569a413ac9d6991d",
     "url": "/zman/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "8de36047ee9ac1956b69",
-    "url": "/zman/static/js/main.a82417c5.chunk.js"
+    "revision": "6a95569a413ac9d6991d",
+    "url": "/zman/static/js/main.7523e315.chunk.js"
   },
   {
     "revision": "4420d1188ee28c8ee6f8",
