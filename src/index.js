@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
+
 import NoSleep from './NoSleep';
 
 window.noSleep = null;
@@ -17,7 +19,6 @@ document.addEventListener('click',  () => {
 }, false);
 
 
-import App from './App';
 
 //import * as serviceWorker from './serviceWorker';
 
