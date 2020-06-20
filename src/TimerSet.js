@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import Timer from './Timer.js';
 import styled from 'styled-components';
-import Beep from './beep.js';
+//import Beep from './beep.js';
 
 import Fab from '@material-ui/core/Fab';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -11,16 +11,16 @@ import PauseIcon from '@material-ui/icons/Pause';
 import {
   useLocation
 } from "react-router-dom";
-import NoSleep from 'nosleep.js';
-var noSleep = new NoSleep();
 
-document.addEventListener('click', function enableNoSleep() {
-  document.removeEventListener('click', enableNoSleep, false);
-  alert('enabling nosleep');
-  noSleep.enable();
+import NoSleep from 'nosleep.js';
+var noSleep;
+document.addEventListener('click',  () => {
+  if (nosleep) nosleep.disable(); // Just to be sure if you forgot to disable.
+  nosleep = new NoSleep();
+  nosleep.enable();
 }, false);
 
-const shortbeep = Beep({duration:0.2, interval:150});
+//const short= Beep({duration:0.2, interval:150});
 
 const TimerSetDiv = styled.div`
   flex:1;
