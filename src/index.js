@@ -9,7 +9,12 @@ document.addEventListener('click',  () => {
   if (window.nosleep) window.nosleep.disable(); // Just to be sure if you forgot to disable.
   window.nosleep = new NoSleep();
   alert('nosleep')
+  try {
   window.nosleep.enable();
+  }
+  catch (ex) {
+    console.log('exception', ex)
+  }
 }, false);
 
 
