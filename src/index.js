@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+//import React from 'react';
+//import ReactDOM from 'react-dom';
 import './index.css';
 
 
@@ -11,6 +11,7 @@ document.addEventListener('click',  () => {
   alert('nosleep')
   window.nosleep.enable();
 }, false);
+
 
 //import App from './App';
 
