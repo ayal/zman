@@ -14,7 +14,7 @@ const TimerDiv = styled.div`
     align-items: center;
 `;
 
-//const shortbeep = Beep({duration:0.2});
+const shortbeep = Beep({duration:0.2});
 
 const Timer = (props) => {
   const {time:propstime, start, onEnd} = props;
