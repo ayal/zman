@@ -12,14 +12,6 @@ import {
   useLocation
 } from "react-router-dom";
 
-import NoSleep from 'nosleep.js';
-window.noSleep = null;
-document.addEventListener('click',  () => {
-  if (window.nosleep) window.nosleep.disable(); // Just to be sure if you forgot to disable.
-  window.nosleep = new NoSleep();
-  window.nosleep.enable();
-}, false);
-
 //const short= Beep({duration:0.2, interval:150});
 
 const TimerSetDiv = styled.div`
