@@ -109,6 +109,7 @@ class NoSleep {
   }
 
   disable() {
+    alert('disabling')
     if (nativeWakeLock) {
       this._wakeLock.release();
       this._wakeLock = null;
