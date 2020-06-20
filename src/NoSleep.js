@@ -22,6 +22,7 @@ const nativeWakeLock = "wakeLock" in navigator;
 class NoSleep {
   constructor() {
     if (nativeWakeLock) {
+      alert('native build')
       this._wakeLock = null;
       const handleVisibilityChange = () => {
         if (this._wakeLock !== null && document.visibilityState === "visible") {
@@ -31,8 +32,10 @@ class NoSleep {
       document.addEventListener("visibilitychange", handleVisibilityChange);
       document.addEventListener("fullscreenchange", handleVisibilityChange);
     } else if (oldIOS) {
+      alert('old ios build')
       this.noSleepTimer = null;
     } else {
+      alert('normal build')
       // Set up no sleep video element
       this.noSleepVideo = document.createElement("video");
 
@@ -44,9 +47,11 @@ class NoSleep {
 
       this.noSleepVideo.addEventListener("loadedmetadata", () => {
         if (this.noSleepVideo.duration <= 1) {
+          alert('webm video loop')
           // webm source
           this.noSleepVideo.setAttribute("loop", "");
         } else {
+          alert('mp4 video loop')
           // mp4 source
           this.noSleepVideo.addEventListener("timeupdate", () => {
             if (this.noSleepVideo.currentTime > 0.5) {
@@ -67,6 +72,7 @@ class NoSleep {
 
   enable() {
     if (nativeWakeLock) {
+      alert('enable native')
       navigator.wakeLock
         .request("screen")
         .then((wakeLock) => {
@@ -83,6 +89,7 @@ class NoSleep {
           console.error(`${err.name}, ${err.message}`);
         });
     } else if (oldIOS) {
+      alert('enable oldios')
       this.disable();
       console.warn(`
         NoSleep enabled for older iOS devices. This can interrupt
@@ -96,6 +103,7 @@ class NoSleep {
         }
       }, 15000);
     } else {
+      alert('enable normal play')
       this.noSleepVideo.play();
     }
   }
