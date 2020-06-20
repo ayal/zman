@@ -33,10 +33,10 @@ const Timer = (props) => {
       else {
 	if (Math.ceil(time) > Math.ceil(newTime)) {
 	  if (newTime <= 3) {
-	    shortbeep(1);
+	    //shortbeep(1);
 	  }
 	  if (newTime <= 1) {
-	    shortbeep(2);
+	    //shortbeep(2);
 	  }
 	}
 	setTime(newTime);
