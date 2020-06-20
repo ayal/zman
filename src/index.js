@@ -1,7 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
+
+import NoSleep from 'nosleep.js';
+window.noSleep = null;
+document.addEventListener('click',  () => {
+  if (window.nosleep) window.nosleep.disable(); // Just to be sure if you forgot to disable.
+  window.nosleep = new NoSleep();
+  alert('nosleep')
+  window.nosleep.enable();
+}, false);
+
+//import App from './App';
 
 //import * as serviceWorker from './serviceWorker';
 
