@@ -1,5 +1,5 @@
 import React,{useEffect, useState, useCallback} from 'react';
-import Beep from './beep.js';
+//import Beep from './beep.js';
 
 import styled from 'styled-components';
 
@@ -14,7 +14,7 @@ const TimerDiv = styled.div`
     align-items: center;
 `;
 
-const shortbeep = Beep({duration:0.2});
+//const shortbeep = Beep({duration:0.2});
 
 const Timer = (props) => {
   const {time:propstime, start, onEnd} = props;
