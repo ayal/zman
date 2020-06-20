@@ -164,9 +164,9 @@ const TimerSet = (props) => {
 	<buttondiv>
 	  <Fab color="primary" aria-label="run"
 	       onClick={()=> {
-		 /*if (window.audiocontext.state === 'suspended') {
+		 if (window.audiocontext.state === 'suspended') {
 		   window.audiocontext.resume();
-		 }*/
+		 }
 		 start ? setStart(null) : setStart(new Date())
 	    }}>
 	    {buttonicon}
