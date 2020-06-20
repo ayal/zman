@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/zman/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/zman/static/js/main.3d1e811e.chunk.js",
-    "main.js.map": "/zman/static/js/main.3d1e811e.chunk.js.map",
-    "runtime-main.js": "/zman/static/js/runtime-main.613377b4.js",
-    "runtime-main.js.map": "/zman/static/js/runtime-main.613377b4.js.map",
+    "main.js": "/zman/static/js/main.a82417c5.chunk.js",
+    "main.js.map": "/zman/static/js/main.a82417c5.chunk.js.map",
+    "runtime-main.js": "/zman/static/js/runtime-main.58fb0029.js",
+    "runtime-main.js.map": "/zman/static/js/runtime-main.58fb0029.js.map",
     "index.html": "/zman/index.html",
-    "precache-manifest.2b9c168745cd51bd002a0d90f215c5e6.js": "/zman/precache-manifest.2b9c168745cd51bd002a0d90f215c5e6.js",
+    "precache-manifest.a4eafe90c8b8815d0969c0aa5bf19cec.js": "/zman/precache-manifest.a4eafe90c8b8815d0969c0aa5bf19cec.js",
     "service-worker.js": "/zman/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/zman/static/css/main.5ecd60fb.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.613377b4.js",
+    "static/js/runtime-main.58fb0029.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.3d1e811e.chunk.js"
+    "static/js/main.a82417c5.chunk.js"
   ]
 }
