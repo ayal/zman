@@ -156,7 +156,7 @@ const TimerSet = (props) => {
 		 setStart(new Date());
 	       }
 	       else {
-		 shortbeep(3);
+		// shortbeep(3);
 	       }
 	}}
 	start={start} />
