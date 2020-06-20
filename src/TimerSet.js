@@ -14,6 +14,12 @@ import {
 import NoSleep from 'nosleep.js';
 var noSleep = new NoSleep();
 
+document.addEventListener('click', function enableNoSleep() {
+  document.removeEventListener('click', enableNoSleep, false);
+  alert('enabling nosleep');
+  noSleep.enable();
+}, false);
+
 const shortbeep = Beep({duration:0.2, interval:150});
 
 const TimerSetDiv = styled.div`
