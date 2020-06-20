@@ -13,11 +13,11 @@ import {
 } from "react-router-dom";
 
 import NoSleep from 'nosleep.js';
-var noSleep;
+window.noSleep = null;
 document.addEventListener('click',  () => {
-  if (nosleep) nosleep.disable(); // Just to be sure if you forgot to disable.
-  nosleep = new NoSleep();
-  nosleep.enable();
+  if (window.nosleep) window.nosleep.disable(); // Just to be sure if you forgot to disable.
+  window.nosleep = new NoSleep();
+  window.nosleep.enable();
 }, false);
 
 //const short= Beep({duration:0.2, interval:150});
