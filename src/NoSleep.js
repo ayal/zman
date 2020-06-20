@@ -118,4 +118,4 @@ class NoSleep {
   }
 }
 
-module.exports = NoSleep;
+export default NoSleep;
