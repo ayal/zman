@@ -3,7 +3,7 @@
 import './index.css';
 
 
-import { NoSleep } from './NoSleep';
+import NoSleep from './NoSleep';
 window.noSleep = null;
 document.addEventListener('click',  () => {
   if (window.nosleep) window.nosleep.disable(); // Just to be sure if you forgot to disable.
