@@ -79,7 +79,7 @@ export function WorkoutEditor({ workout, onSave, onStart, onCancel }: WorkoutEdi
   return (
     <div className="flex h-dvh flex-col bg-black text-white">
       {/* Header */}
-      <header className="flex items-center gap-3 border-b border-zinc-800 px-4 py-3">
+      <header className="flex items-center gap-3 border-b border-zinc-800 px-4 py-3 pt-[calc(env(safe-area-inset-top)+0.75rem)]">
         <button
           onClick={onCancel}
           aria-label="Back"
@@ -220,7 +220,7 @@ export function WorkoutEditor({ workout, onSave, onStart, onCancel }: WorkoutEdi
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800 p-4">
+      <footer className="border-t border-zinc-800 p-4 pb-[calc(env(safe-area-inset-bottom)+1rem)]">
         <button
           onClick={() => isValid && onStart(buildWorkout())}
           disabled={!isValid}

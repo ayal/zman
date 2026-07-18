@@ -92,7 +92,7 @@ export function WorkoutLibrary({
 }: WorkoutLibraryProps) {
   return (
     <div className="flex h-dvh flex-col bg-black text-white">
-      <header className="flex items-center gap-3 border-b border-zinc-800 px-4 py-3">
+      <header className="flex items-center gap-3 border-b border-zinc-800 px-4 py-3 pt-[calc(env(safe-area-inset-top)+0.75rem)]">
         <button
           onClick={onClose}
           aria-label="Back"

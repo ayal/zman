@@ -136,7 +136,7 @@ export default function App() {
   return (
     <div className="relative flex h-dvh flex-col items-center justify-center gap-2 bg-black px-6 text-white select-none">
       {/* Top bar */}
-      <div className="absolute inset-x-0 top-0 flex items-center justify-between px-4 py-3">
+      <div className="absolute inset-x-0 top-0 flex items-center justify-between px-4 py-3 pt-[calc(env(safe-area-inset-top)+0.75rem)]">
         <button
           onClick={() => setView("library")}
           aria-label="Workouts"
