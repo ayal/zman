@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Zman
 
-## Available Scripts
+A configurable interval timer for workouts, built as a lightweight single-page app. "Zman" means "time" in Hebrew.
 
-In the project directory, you can run:
+**[Live demo](https://ayal.github.io/zman)**
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Configurable schedule via URL query parameter
+- Visual countdown with audio beeps in the final seconds
+- Auto-advance through segments with progress bar
+- Skip-to-next and play/pause controls
+- Screen wake lock (keeps device awake during a session)
+- Mobile-first dark UI
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Schedule Format
 
-### `npm test`
+The timer schedule is configured via the `?set=` query parameter.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Format: sections separated by `|`. Each section is `repeat,labels,times`:
 
-### `npm run build`
+| Part | Description |
+|------|-------------|
+| `repeat` | Number of full cycles for this section |
+| `labels` | Slash-separated segment names (e.g. `Work/Rest`) |
+| `times` | Slash-separated durations in seconds (e.g. `30/10`) |
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Examples
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Default** — 3 rounds of upper-body + core, then legs/cardio finishers (30s work / 10s rest, ~8 min):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3× Push-ups, Superman, Sit-ups → Jumping Jacks, Plank, Tricep Dips.
 
-### `npm run eject`
+**Tabata** (8 rounds of 20s work / 10s rest):
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+?set=1,Get ready,5|8,Work/Rest,20/10
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Simple countdown** (60 seconds):
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+?set=1,Timer,60
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**Custom warmup + workout + cooldown**:
 
-## Learn More
+```
+?set=1,Warm up,30|5,Work/Rest,45/15|1,Cool down,60
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Development
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm install
+npm run dev        # http://localhost:5173/zman/
+```
 
-### Code Splitting
+## Build & Deploy
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+npm run build      # outputs to dist/
+npm run deploy     # deploys to GitHub Pages
+```
 
-### Analyzing the Bundle Size
+## Tech Stack
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [React 19](https://react.dev/) + TypeScript
+- [Vite](https://vite.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [Lucide React](https://lucide.dev/) for icons
+- [NoSleep.js](https://github.com/richtr/NoSleep.js) for wake lock
